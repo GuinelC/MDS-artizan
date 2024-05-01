@@ -1,0 +1,31 @@
+header.main{
+    padding: 5px;
+    margin: 0;
+    margin-bottom: 30px;
+    background-color: rgb(30, 30, 30);
+}
+
+header.main nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}
+
+header.main nav a {
+    padding: 4px 8px;
+    transition: 0.33s ease-in-out;
+    border-radius: 8px;
+    color: rgb(255, 255, 255);
+}
+
+header.main nav a:hover{
+    background-color: white;
+    color: black;
+}
+
+.btn-auth{
+    border-radius: 4px;
+    padding: 4px 8px;
+    border: 1px solid rgb(0, 162, 62);
+}
