@@ -4,7 +4,7 @@ import { Input } from '@nextui-org/react'
 import { toast } from 'react-toastify'
 
 const ProfileContainer = () => {
-  const { state: { user, jwt }, updateUserInfo } = useAuth()
+  const { state: { user, jwt }, updateUserInfo, deleteUserInfo } = useAuth()
   const [formData, setFormData] = useState({
     email: '',
     username: ''
@@ -27,6 +27,16 @@ const ProfileContainer = () => {
     }
   }, [user])
 
+  // Mettre à jour les données du formulaire lorsque l'utilisateur change
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        email: user.email,
+        username: user.username
+      })
+    }
+  }, [user])
+
   // Gérer les modifications des champs de formulaire
   const handleChange = (e) => {
     setFormData({
@@ -35,8 +45,8 @@ const ProfileContainer = () => {
     })
   }
 
-  // Gérer la soumission du formulaire
-  const handleSubmit = async (e) => {
+  // UPDATE
+  const handleUpdate = async (e) => {
     e.preventDefault()
     try {
       // Mettre à jour les informations utilisateur via l'API
@@ -46,6 +56,21 @@ const ProfileContainer = () => {
       window.localStorage.setItem('formData', JSON.stringify(formData))
     } catch (error) {
       toast.error('Une erreur s\'est produite lors de l\'enregistrement des données.')
+    }
+  }
+
+  // DELETE
+  const handleDelete = async (e) => {
+    e.preventDefault()
+    try {
+      await deleteUserInfo(user.id, jwt)
+      window.localStorage.removeItem('formData')
+      window.localStorage.removeItem('jwt')
+
+      // REDIRECTION
+      window.location.href = '/'
+    } catch (error) {
+      toast.error('Une erreur s\'est produite lors de la suppression du compte.')
     }
   }
 
@@ -67,11 +92,23 @@ const ProfileContainer = () => {
         value={formData.email}
         onChange={handleChange}
       />
-      {/* SUBMIT */}
-      <button className='my-7' onClick={handleSubmit} style={{ backgroundColor: 'blue', color: 'white' }}>
+
+      {/* BTN - Update */}
+      <button
+        className='my-7 px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50'
+        onClick={handleUpdate}
+      >
         Mettre à jour
+      </button>
+      {/* BTN - Delete */}
+      <button
+        className='my-7 px-4 py-2 rounded-md bg-red-500 text-white hover:bg-red-600 transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50'
+        onClick={handleDelete}
+      >
+        Supprimer le compte
       </button>
     </div>
   )
 }
+
 export default ProfileContainer

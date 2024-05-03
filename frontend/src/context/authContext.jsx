@@ -1,7 +1,7 @@
 // Votre fichier authContext.js
 
 import { createContext, useReducer, useContext, useEffect } from 'react'
-import { loginApi, registerApi, updateUserApi } from '../services/Api'
+import { loginApi, registerApi, updateUserApi, deleteUserApi } from '../services/Api'
 import { toast } from 'react-toastify'
 
 const AuthContext = createContext()
@@ -13,7 +13,8 @@ const actionTypes = {
   LOADING: 'LOADING',
   ERROR: 'ERROR',
   RESET: 'RESET',
-  UPDATE_USER: 'UPDATE_USER'
+  UPDATE_USER: 'UPDATE_USER',
+  DELETE: 'DELETE_USER'
 }
 
 const initialState = {
@@ -55,6 +56,10 @@ const authReducer = (prevState, action) => {
           ...prevState.user,
           ...action.data // Met à jour les informations de l'utilisateur avec celles fournies
         }
+      }
+    case actionTypes.DELETE_USER:
+      return {
+        ...initialState // Réinitialiser l'état lorsque l'utilisateur est supprimé
       }
     case actionTypes.RESET:
     case actionTypes.LOGOUT:
@@ -135,10 +140,19 @@ const authFactory = (dispatch) => ({
       })
     }
   },
-  logout: () => {
-    dispatch({ type: actionTypes.LOGOUT })
-  },
-  dispatch // Ajout de dispatch dans l'objet retourné par authFactory
+  deleteUserInfo: async (userId, jwt) => {
+    dispatch({ type: actionTypes.LOADING })
+    try {
+      const response = await deleteUserApi(userId, jwt)
+      dispatch({ type: actionTypes.DELETE_USER })
+      return response // Retournez éventuellement la réponse de l'API si nécessaire
+    } catch (error) {
+      const errorMessage = error?.response?.data?.error?.message || 'Une erreur s\'est produite lors de la suppression du compte.'
+      toast.error(errorMessage)
+      dispatch({ type: actionTypes.ERROR, data: { error: errorMessage } })
+      throw error // Rejetez l'erreur pour la gérer dans le composant
+    }
+  }
 })
 
 const AuthProvider = ({ children }) => {

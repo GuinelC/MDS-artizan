@@ -35,4 +35,13 @@ const updateUserApi = async (userInfo, userId, jwt) => {
   return response.data
 }
 
-export { loginApi, registerApi, updateUserApi }
+const deleteUserApi = async (userId, jwt) => {
+  const response = await axiosInstance.delete(`/users/${userId}`, {
+    headers: {
+      Authorization: `Bearer ${jwt}`
+    }
+  })
+  return response.data
+}
+
+export { loginApi, registerApi, updateUserApi, deleteUserApi }
