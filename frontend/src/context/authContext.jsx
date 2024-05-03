@@ -1,16 +1,19 @@
+// Votre fichier authContext.js
+
 import { createContext, useReducer, useContext, useEffect } from 'react'
-import { loginApi, registerApi } from '../services/Api'
+import { loginApi, registerApi, updateUserApi } from '../services/Api'
 import { toast } from 'react-toastify'
 
 const AuthContext = createContext()
 
 const actionTypes = {
-  LOGIN: 'LOGIN', // Connecté avec succès
-  REGISTER: 'REGISTER', // Inscrit + connecteé avec succès
-  LOGOUT: 'LOGOUT', // Déconnexion
-  LOADING: 'LOADING', // Chargement
-  ERROR: 'ERROR', // ERREUR
-  RESET: 'RESET' // Réi
+  LOGIN: 'LOGIN',
+  REGISTER: 'REGISTER',
+  LOGOUT: 'LOGOUT',
+  LOADING: 'LOADING',
+  ERROR: 'ERROR',
+  RESET: 'RESET',
+  UPDATE_USER: 'UPDATE_USER'
 }
 
 const initialState = {
@@ -21,11 +24,6 @@ const initialState = {
   error: null
 }
 
-/**
- *
- * @param {*} prevState Etat précédent l'action
- * @param {*} action Action pour mettre à jour l'état = { type,data? = { jwt, user, error } }
- */
 const authReducer = (prevState, action) => {
   switch (action.type) {
     case actionTypes.REGISTER:
@@ -50,6 +48,14 @@ const authReducer = (prevState, action) => {
         ...prevState,
         loading: true
       }
+    case actionTypes.UPDATE_USER:
+      return {
+        ...prevState,
+        user: {
+          ...prevState.user,
+          ...action.data // Met à jour les informations de l'utilisateur avec celles fournies
+        }
+      }
     case actionTypes.RESET:
     case actionTypes.LOGOUT:
       return initialState
@@ -59,7 +65,6 @@ const authReducer = (prevState, action) => {
 }
 
 const authFactory = (dispatch) => ({
-  // credentials = {identifier, password}
   login: async (credentials) => {
     dispatch({ type: actionTypes.LOADING })
     try {
@@ -104,9 +109,36 @@ const authFactory = (dispatch) => ({
       })
     }
   },
+  updateUserInfo: async (userInfo, userId, jwt) => {
+    dispatch({ type: actionTypes.LOADING })
+    try {
+      // Appelez updateUserApi avec les paramètres appropriés
+      const updatedUser = await updateUserApi(userInfo, userId, jwt)
+
+      // Mettez à jour l'utilisateur dans le state avec les données mises à jour
+      dispatch({
+        type: actionTypes.UPDATE_USER,
+        data: updatedUser
+      })
+
+      // Affichez une notification de succès
+      toast.success('Vos informations ont été mises à jour avec succès.')
+    } catch (error) {
+      // En cas d'erreur, affichez une notification d'erreur
+      const errorMessage = error?.response?.data?.error?.message || 'Une erreur s\'est produite lors de la mise à jour de vos informations.'
+      toast.error(errorMessage)
+
+      // Dispatchez l'erreur pour la gérer dans le state
+      dispatch({
+        type: actionTypes.ERROR,
+        data: { error: errorMessage }
+      })
+    }
+  },
   logout: () => {
     dispatch({ type: actionTypes.LOGOUT })
-  }
+  },
+  dispatch // Ajout de dispatch dans l'objet retourné par authFactory
 })
 
 const AuthProvider = ({ children }) => {
@@ -132,7 +164,4 @@ const useAuth = () => {
   return context
 }
 
-export {
-  AuthProvider,
-  useAuth
-}
+export { AuthProvider, useAuth }

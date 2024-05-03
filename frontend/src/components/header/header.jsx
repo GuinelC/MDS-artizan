@@ -62,14 +62,21 @@ function Header () {
                   color='secondary'
                   name='Jason Hughes'
                   size='sm'
-                  src='https://i.pravatar.cc/150?u=a042581f4e29026704d'
+                  src='https://i.pravatar.cc/150?u=gvhgde9yfo7'
                 />
               </DropdownTrigger>
               <DropdownMenu aria-label='Profile Actions' variant='flat'>
                 <DropdownItem key='profile' href='/profile' className='h-14 gap-2'>
                   <p className='font-semibold'>Mon compte</p>
-                  <p className='font-semibold'>{isLoggedIn ? user.email : 'Non connecté'}</p>
+                  {isLoggedIn && user
+                    ? (
+                      <p className='font-semibold'>{user.email}</p>
+                      )
+                    : (
+                      <p className='font-semibold'>Non connecté</p>
+                      )}
                 </DropdownItem>
+
                 <DropdownItem key='logout' color='danger' onPress={logout}>
                   Log Out
                 </DropdownItem>

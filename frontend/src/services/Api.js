@@ -24,14 +24,15 @@ const registerApi = async (credentials) => {
   return response?.data
 }
 
-const updateMeApi = async (userInfos, userId, jwt) => {
-  const response = await axiosInstance.put(`/users/${userId}`, userInfos, {
+const updateUserApi = async (userInfo, userId, jwt) => {
+  const response = await axiosInstance.put(`/users/${userId}`, userInfo, {
     headers: {
-      Authorization: `Bearer ${jwt}`
+      Authorization: `Bearer ${jwt}`,
+      'Content-Type': 'application/json'
+
     }
   })
-  console.log(response?.data)
-  return response?.data
+  return response.data
 }
 
-export { loginApi, registerApi, updateMeApi }
+export { loginApi, registerApi, updateUserApi }
