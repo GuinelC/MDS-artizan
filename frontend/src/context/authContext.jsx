@@ -152,6 +152,9 @@ const authFactory = (dispatch) => ({
       dispatch({ type: actionTypes.ERROR, data: { error: errorMessage } })
       throw error // Rejetez l'erreur pour la gérer dans le composant
     }
+  },
+  logout: () => {
+    dispatch({ type: actionTypes.LOGOUT })
   }
 })
 
