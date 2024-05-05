@@ -1,0 +1,17 @@
+.login-form{
+    width: 50%;
+    margin: auto;
+}
+.register-title{
+    font-size: 50px;
+    font-weight: bold;
+    margin: 40px;
+}
+.registerForm{
+    width: 60%;
+    margin: auto;
+}
+
+.update-form{
+    width: 60%;
+}

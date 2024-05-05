@@ -21,7 +21,7 @@ function Home () {
 
   return (
     <div className='container mx-auto'>
-      <h1 className='text-3xl font-semibold my-8'>Home</h1>
+      <h1 className='font-bold text-inherit text-black my-8' style={{ fontSize: '35px' }}>ALL PRODUCTS</h1>
       <div>
         <CartProvider>
           <ProductsList products={response} />

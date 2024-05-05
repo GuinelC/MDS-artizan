@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useAuth } from '../../context/authContext'
 import { Input } from '@nextui-org/react'
 import { toast } from 'react-toastify'
+import './form.css'
 
 const ProfileContainer = () => {
   const { state: { user, jwt }, updateUserInfo, deleteUserInfo } = useAuth()
@@ -75,7 +76,7 @@ const ProfileContainer = () => {
   }
 
   return (
-    <div className='flex flex-col w-full items-center my-7'>
+    <div className='update-form flex flex-col w-full items-center my-7'>
       <Input
         className='my-7'
         name='username'
@@ -95,14 +96,14 @@ const ProfileContainer = () => {
 
       {/* BTN - Update */}
       <button
-        className='my-7 px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50'
+        className='border border-black text-md bg-white text-black font-bold py-2 px-8 rounded-lg shadow-md hover:bg-gray-200 transition duration-300 ease-in-out'
         onClick={handleUpdate}
       >
         Mettre à jour
       </button>
       {/* BTN - Delete */}
       <button
-        className='my-7 px-4 py-2 rounded-md bg-red-500 text-white hover:bg-red-600 transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50'
+        className='font-bold my-7 px-5 py-3 rounded-md bg-red-500 text-white hover:bg-red-600 transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50'
         onClick={handleDelete}
       >
         Supprimer le compte

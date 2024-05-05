@@ -5,14 +5,6 @@ import React from 'react'
 
 function Dashboard () {
   const { state: { user } } = useAuth()
-  // const navigate = useNavigate()
-
-  // const { logout } = useAuth()
-
-  // const handleLogout = () => {
-  //   logout()
-  //   navigate('/authentication')
-  // }
 
   // STYLES
   const styles = {
@@ -41,9 +33,6 @@ function Dashboard () {
       <div>
         <p className='text-2xl font-semibold text-gray-800 my-5'>Profil de {user.username}</p>
       </div>
-      {/* <Button onClick={handleLogout}>
-        Deconnexion
-      </Button> */}
     </>
 
   )

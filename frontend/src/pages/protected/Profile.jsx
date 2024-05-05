@@ -1,8 +1,12 @@
 import UpdateProfileForm from '../../components/forms/UpdateProfileForm'
 
 function Profile () {
+
   return (
-    <UpdateProfileForm />
+    <>
+      <h1 className='my-8 font-bold' style={{ fontSize: '40px' }}>Modifier mes informations</h1>
+      <UpdateProfileForm />
+    </>
   )
 }
 
