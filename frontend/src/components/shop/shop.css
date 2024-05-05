@@ -1,0 +1,68 @@
+.tabContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 75px;
+}
+
+.shopTab{
+    width: 85%;
+    border: 1px solid black;
+}
+
+.shopTab thead{
+    background-color: rgb(65, 65, 65);
+    color: white;
+}
+
+.shopTab thead tr{
+    height: 50px;
+}
+
+.shopTab td{
+    border-bottom: 1px solid grey;
+}
+.shopTab tr {
+    transition: background-color 0.3s ease-in-out;
+    margin: 5px;
+}
+.shopTab tr:hover{
+    background-color: rgb(212, 212, 212);
+    cursor: pointer;
+}
+
+tfoot{
+    background-color: blue;
+    min-width: 500px;
+    margin-top: 500px;
+}
+
+/* TOTAL - CARD */
+.TotalCard{
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    border: 2px solid grey;
+    border-radius: 8px;
+    max-height: 190px;
+}
+.TotalCard h3{
+    margin: 10px;
+    font-size: 25px;
+}
+
+.TotalCard p{
+    margin: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.shop-submit{
+    width: 90%;
+    height: 40px;
+    background-color: rgb(4, 220, 119);
+    color: white;
+    margin: auto;
+    border: 0px;
+    border-radius: 6px;
+}
