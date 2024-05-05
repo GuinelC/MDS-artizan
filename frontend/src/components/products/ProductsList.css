@@ -24,6 +24,7 @@
   font-size: 1rem; /* Utiliser des tailles de police réactives */
   font-weight: bold;
   margin-top: 1rem; /* Utiliser des espacements réactifs */
+  font-size: 20px;
 }
 
 .card-body h2 {

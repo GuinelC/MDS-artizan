@@ -1,0 +1,17 @@
+/* CART PAGE */
+
+.card-contain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Cart-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 350px;
+    margin: 50px;
+    font-size: 75px;
+    font-weight: bold;
+}

@@ -22,7 +22,6 @@ function CartList() {
 
   return (
     <>
-      <h1>Cart</h1>
       <div className="tabContainer mx-auto">
         <table className="shopTab" border={1}>
           <thead>
@@ -32,33 +31,37 @@ function CartList() {
               <th>Prix unitaire</th>
               <th>Quantité</th>
               <th>Prix total</th>
-              <th>Actions</th>
+              <th><BiTrash size={20} /></th>
             </tr>
           </thead>
           <tbody>
             {items.map((cartItem) => (
               <tr key={cartItem.item.id}>
-                <td>{cartItem.item.attributes.name}</td>
-                <td>{cartItem.item.attributes.description}</td>
-                <td>{cartItem.item.attributes.price || "10"}€</td>
+                <td className="product-name">{cartItem.item.attributes.name}</td>
+                <td className="descr">{cartItem.item.attributes.description}</td>
+                <td className="product-price">{cartItem.item.attributes.price || "10"}€</td>
                 <td>
-                  <button onClick={() => handleDecrement(cartItem.item.id)}>
-                    <BiMinus size={20} />
-                  </button>
-                  {cartItem.qty}
-                  <button onClick={() => addToCart(cartItem.item)}>
-                    <BiPlus size={20} />
-                  </button>
+                    <div className="quantity">
+                        {cartItem.qty}
+                        <div className="quantity-btn-box">
+                            <button className="handleDecrement" onClick={() => handleDecrement(cartItem.item.id)}>
+                                <BiMinus size={20} />
+                            </button>
+                            <button className="addToCart" onClick={() => addToCart(cartItem.item)}>
+                                <BiPlus size={20} />
+                            </button>
+                        </div>
+                    </div>
                 </td>
-                <td>
+                <td className="product-total">
                   {(
                     cartItem.qty * (cartItem.item.attributes.price || 10)
                   ).toFixed(2)}{" "}
                   €
                 </td>
                 <td>
-                  <button onClick={() => removeFromCart(cartItem.item.id)}>
-                    <BiTrash size={20} />
+                  <button className="removeFromCart" onClick={() => removeFromCart(cartItem.item.id)}>
+                    X
                   </button>
                 </td>
               </tr>

@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import './ProductsList.css'
 
 function ProductsListItem ({ product }) {
-  const { addToCart } = useCart() // Utilisez le hook useCart pour obtenir la fonction addToCart
+  const { addToCart, updateCart } = useCart() // Utilisez le hook useCart pour obtenir la fonction addToCart
 
   const { name, description, images, price, artisan } = product.attributes
 
@@ -13,7 +13,8 @@ function ProductsListItem ({ product }) {
   const showArtisan = artisan && artisan.data && artisan.data.attributes && artisan?.data?.attributes?.name
 
   const handleAddToCart = () => {
-    addToCart(product, 1) // Spécifier la quantité à 1
+    addToCart(product, 1) // Ajoutez l'article au panier
+    updateCart() // Mettez à jour le panier
     toast.success('Produit ajouté au panier')
   }
 
@@ -25,7 +26,7 @@ function ProductsListItem ({ product }) {
       <CardBody className='card-body'>
         <h2>{name}</h2>
         <p>{description.length > 60 ? description.substring(0, 60) + '...' : description}</p>
-        <p className='price mb-2'>{price}€</p>
+        <p className='price mb-2 text-center'>{price}€</p>
         <div className='card-footer'>
           {showArtisan}
         </div>
