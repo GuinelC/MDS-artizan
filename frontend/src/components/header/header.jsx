@@ -50,9 +50,12 @@ function Header () {
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link href='/cart'>
-            <CounterCart />
-          </Link>
+        {isLoggedIn && (
+            <Link href='/cart'>
+              <CounterCart />
+            </Link>
+          )}
+
         </NavbarItem>
       </NavbarContent>
 
