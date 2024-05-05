@@ -11,13 +11,13 @@ function App() {
   return (
     <>
       <NextUIProvider>
-        <CartProvider>
-          <AuthProvider>
+        <AuthProvider>
+          <CartProvider>
             <Header />
             <Router />
             <ToastContainer position="bottom-right" theme="dark" />
-          </AuthProvider>
-        </CartProvider>
+          </CartProvider>
+        </AuthProvider>
       </NextUIProvider>
     </>
   );

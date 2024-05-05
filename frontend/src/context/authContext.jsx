@@ -1,5 +1,4 @@
 // Votre fichier authContext.js
-
 import { createContext, useReducer, useContext, useEffect } from 'react'
 import { loginApi, registerApi, updateUserApi, deleteUserApi } from '../services/Api'
 import { toast } from 'react-toastify'
