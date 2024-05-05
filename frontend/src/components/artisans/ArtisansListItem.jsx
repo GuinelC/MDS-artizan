@@ -1,7 +1,7 @@
 import { Card, CardBody, CardHeader, Link } from '@nextui-org/react'
 import PropTypes from 'prop-types'
 
-// PAGE ALL ARTISANS \\
+// PAGE ALL ARTISANS CARD \\
 
 // SLUG VERSION CARD
 function ArtisansListItem ({ artisan }) {

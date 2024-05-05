@@ -15,6 +15,7 @@ import Auth from '../pages/Auth'
 import Dashboard from '../pages/protected/Dashboard'
 import PrivateRoutes from './PrivateRouteMiddleware'
 import Profile from '../pages/protected/Profile'
+import Cart from '../pages/Cart'
 
 function Router () {
   return (
@@ -28,6 +29,7 @@ function Router () {
         <Route path='about' element={<About />} />
         <Route path='contact' element={<Contact />} />
         <Route path='services' element={<Services />} />
+        <Route path='cart' element={<Cart />} />
         <Route path='authentication' element={<Auth />} />
         <Route path='dashboard' element={<PrivateRoutes />}>
           <Route index element={<Dashboard />} />

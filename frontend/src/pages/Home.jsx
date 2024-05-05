@@ -1,6 +1,7 @@
 import { Spinner } from '@nextui-org/react'
 import ProductsList from '../components/products/ProductsList'
 import { useFetch } from '../hooks/Api'
+import { CartProvider } from '../context/cartContext' // Importez le CartProvider
 
 function Home () {
   // Récup List product
@@ -8,7 +9,7 @@ function Home () {
 
   if (isLoading) {
     return (
-      <div className='flex flex-col justify-center items-center'>
+      <div className='flex justify-center items-center h-screen'>
         <Spinner size='lg' />
       </div>
     )
@@ -19,9 +20,13 @@ function Home () {
   }
 
   return (
-    <div className='container mx-auto flex flex-col items-center justify-start'>
-      <h1 className='text-3xl font-semibold'>Home</h1>
-      <ProductsList products={response} />
+    <div className='container mx-auto'>
+      <h1 className='text-3xl font-semibold my-8'>Home</h1>
+      <div>
+        <CartProvider>
+          <ProductsList products={response} />
+        </CartProvider>
+      </div>
     </div>
   )
 }

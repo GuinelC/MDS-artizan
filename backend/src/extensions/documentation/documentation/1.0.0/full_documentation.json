@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-05-01T15:17:57.747Z"
+    "x-generation-date": "2024-05-05T12:44:53.870Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1226,6 +1226,26 @@
                                                       }
                                                     }
                                                   }
+                                                },
+                                                "artisan": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "data": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "id": {
+                                                          "type": "number"
+                                                        },
+                                                        "attributes": {
+                                                          "type": "object",
+                                                          "properties": {}
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "isArtisan": {
+                                                  "type": "boolean"
                                                 },
                                                 "createdAt": {
                                                   "type": "string",
@@ -2797,6 +2817,26 @@
                                         }
                                       }
                                     }
+                                  },
+                                  "artisan": {
+                                    "type": "object",
+                                    "properties": {
+                                      "data": {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "number"
+                                          },
+                                          "attributes": {
+                                            "type": "object",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "isArtisan": {
+                                    "type": "boolean"
                                   },
                                   "createdAt": {
                                     "type": "string",

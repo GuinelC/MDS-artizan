@@ -1,22 +1,49 @@
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
+// import { Button } from '@nextui-org/react'
 import { useAuth } from '../../context/authContext'
-import { Button } from '@nextui-org/react'
+import React from 'react'
 
 function Dashboard () {
-  const navigate = useNavigate()
+  const { state: { user } } = useAuth()
+  // const navigate = useNavigate()
 
-  const { logout } = useAuth()
+  // const { logout } = useAuth()
 
-  const handleLogout = () => {
-    logout()
-    navigate('/authentication')
+  // const handleLogout = () => {
+  //   logout()
+  //   navigate('/authentication')
+  // }
+
+  // STYLES
+  const styles = {
+    container: {
+      backgroundColor: '#f0f0f0',
+      padding: '20px',
+      textAlign: 'center',
+      marginTop: '50px'
+    },
+    title: {
+      color: '#333',
+      fontSize: '2.5rem',
+      fontWeight: 'bold',
+      textTransform: 'uppercase',
+      letterSpacing: '2px',
+      margin: '0',
+      marginTop: '70'
+    }
   }
+
   return (
     <>
-      <h2>Dashboard  Page</h2>
-      <Button onClick={handleLogout}>
+      <div style={styles.container}>
+        <h1 style={styles.title}>Dashboard</h1>
+      </div>
+      <div>
+        <p className='text-2xl font-semibold text-gray-800 my-5'>Profil de {user.username}</p>
+      </div>
+      {/* <Button onClick={handleLogout}>
         Deconnexion
-      </Button>
+      </Button> */}
     </>
 
   )

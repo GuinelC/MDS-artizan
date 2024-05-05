@@ -11,7 +11,7 @@ import './ProductsList.css'
 function ProductsList ({ products }) {
   if (!products || products.length < 1) return 'No data'
   return (
-    <div>
+    <div className='flex flex-wrap gap-5'>
       {
         products.map(product => (
           <ProductsListItem key={product.id} product={product} />

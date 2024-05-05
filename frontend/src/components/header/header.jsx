@@ -1,15 +1,16 @@
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link, Button, Dropdown, DropdownTrigger, Avatar, DropdownMenu, DropdownItem } from '@nextui-org/react'
-// import { AcmeLogo } from './AcmeLogo.jsx'
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { Navbar, NavbarBrand, NavbarContent, NavbarMenuToggle, NavbarItem, NavbarMenuItem, NavbarMenu, Link, Button, Dropdown, DropdownTrigger, Avatar, DropdownMenu, DropdownItem } from '@nextui-org/react'
 import { useAuth } from '../../context/authContext.jsx'
+import CounterCart from '../shop/CounterCart.jsx'
+import './Header.css'
 
 function Header () {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { state: { isLoggedIn, user }, logout } = useAuth()
-  console.log(isLoggedIn)
+
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent>
+    <Navbar className="navbar" onMenuOpenChange={setIsMenuOpen}>
+      <NavbarContent className="navbar-content">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           className='sm:hidden'
@@ -17,7 +18,7 @@ function Header () {
         <NavbarBrand>
           <Link className='text-black' href='/'>
             {/* <AcmeLogo /> */}
-            <p className='font-bold text-inherit text-black'>ARTIZANS LOGO</p>
+            <p className='font-bold text-inherit text-black'>ARTIZANS</p>
           </Link>
         </NavbarBrand>
       </NavbarContent>
@@ -48,6 +49,11 @@ function Header () {
             Contact
           </Link>
         </NavbarItem>
+        <NavbarItem>
+          <Link href='/cart'>
+            <CounterCart />
+          </Link>
+        </NavbarItem>
       </NavbarContent>
 
       <NavbarContent as='div' justify='end'>
@@ -76,7 +82,9 @@ function Header () {
                       <p className='font-semibold'>Non connecté</p>
                       )}
                 </DropdownItem>
-
+                <DropdownItem key='Dashboard' href='/Dashboard' className='h-14 gap-2'>
+                  Dashboard
+                </DropdownItem>
                 <DropdownItem key='logout' color='danger' onPress={logout}>
                   Log Out
                 </DropdownItem>
@@ -92,6 +100,11 @@ function Header () {
 
       <NavbarMenu>
         {/* <NavbarMenuItem /> */}
+        <NavbarMenuItem>
+          <Link href='/'>
+            Home
+          </Link>
+        </NavbarMenuItem>
         <NavbarMenuItem>
           <Link href='/services'>
             Services
